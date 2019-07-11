@@ -1,14 +1,23 @@
-# README
+# StackOutput Resolver
 
-Add your resolver readme here. Remember to include the following:
+Fetches the value of an output from a different Stack controlled by Sceptre.
 
-- Tell people how to install it (e.g. pip install ...).
-- Be clear about the purpose of the resolver, its capabilities and limitations.
-- Tell people how to use it.
-- Give examples of the resolver in use.
+Syntax:
 
-Read our wiki to learn how to use this repo:
-https://github.com/Sceptre/sceptre-resolver-template/wiki
+```yaml
+parameters | sceptre_user_data:
+  <name>: !stack_output <stack_name>.yaml::<output_name>
+```
 
-If you have any questions or encounter an issue
-[please open an issue](https://github.com/Sceptre/sceptre-resolver-template/issues/new)
+Example:
+
+```yaml
+parameters:
+  VpcIdParameter: !stack_output shared/vpc.yaml::VpcIdOutput
+```
+
+Sceptre infers that the Stack to fetch the output value from is a dependency,
+and builds that Stack before the current one.
+
+This resolver will add a dependency for the Stack in which needs the output
+from.
