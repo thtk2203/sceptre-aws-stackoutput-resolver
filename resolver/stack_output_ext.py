@@ -90,7 +90,7 @@ class StackOutputBase(Resolver):
         return formatted_outputs
 
 
-class StackOutput(StackOutputBase):
+class StackOutputExt(StackOutputBase):
     """
     Resolver for retrieving the value of a Stack output within the current
     Sceptre StackGroup. Adds the target Stack to the dependencies of the
@@ -101,7 +101,7 @@ class StackOutput(StackOutputBase):
     """
 
     def __init__(self, *args, **kwargs):
-        super(StackOutput, self).__init__(*args, **kwargs)
+        super(StackOutputExt, self).__init__(*args, **kwargs)
 
     def setup(self):
         """
@@ -125,8 +125,10 @@ class StackOutput(StackOutputBase):
         stack = next(
             stack for stack in self.stack.dependencies if stack.name == friendly_stack_name
         )
-
-        stack_name = "-".join([stack.project_code, friendly_stack_name.replace("/", "-")])
+        if stack.external_name:
+            stack_name = stack.external_name
+        else:
+            stack_name = "-".join([stack.project_code, friendly_stack_name.replace("/", "-")])
 
         return self._get_output_value(stack_name, self.output_key,
                                       profile=stack.profile, region=stack.region)

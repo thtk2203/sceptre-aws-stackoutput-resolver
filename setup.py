@@ -6,15 +6,15 @@ __version__ = "1.0.0"
 # https://github.com/Sceptre/project/wiki/sceptre-resolver-template
 
 # lowercase, snakecase, use `-` as separator.
-RESOLVER_NAME = 'sceptre-aws-stackoutput-resolver'
+RESOLVER_NAME = 'sceptre-aws-stackoutput-ext-resolver'
 # the resolver call in sceptre e.g. !command_name.
-RESOLVER_COMMAND_NAME = 'stack_output'
+RESOLVER_COMMAND_NAME = 'stack_output_ext'
 # do not change.
 RESOLVER_MODULE_NAME = 'resolver.{}'.format(RESOLVER_COMMAND_NAME)
 # CamelCase name of resolver class in resolver.resolver.
-RESOLVER_CLASS = 'StackOutput'
+RESOLVER_CLASS = 'StackOutputExt'
 # one line summary description
-RESOLVER_DESCRIPTION = 'Sceptre AWS StackOuput Resolver'
+RESOLVER_DESCRIPTION = 'Sceptre AWS StackOuput Extended Resolver'
 # if multiple use a single string with comma separated names.
 RESOLVER_AUTHOR = 'Sceptre'
 # if multiple use single string with commas.
